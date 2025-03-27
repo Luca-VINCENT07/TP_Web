@@ -1,3 +1,16 @@
-body {
+html {
     font-family: 'Montserrat';font-size: 22px;
+}
+
+body {
+    background-color: blue;
+}
+
+.formulaire {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }

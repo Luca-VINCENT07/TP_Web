@@ -5,104 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TP 8 - JS</title>
 
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Scripts.js">
+
     <script>
-        function exo1(){
-            let x = window.prompt("Qu'elle est la taille de la longueur du rectangle : ");
-            let y = window.prompt("Qu'elle est la taille de la largeur du rectangle : ");
+        function validerFormulaire() {
+            let epaisseur = document.getElementById("epaisseur").value;
+            let surface = document.getElementById("surface").value;
 
-            window.alert("L'air du rectangle est de : " + x*y);
-        }
-
-        function exo2 (){
-
-            let faux = true
-            while (faux) {
-                let x = window.prompt("Qu'elle est la taille de la longueur du rectangle : ");
-                let y = window.prompt("Qu'elle est la taille de la largeur du rectangle : ");
-
-                if (window.confirm("Voulez vous utiliser x : "+x+" et y : "+y)) {
-                    window.alert("L'air du rectangle est de : " + x*y);
-                    faux = false
-                }    
+            if (isNaN(epaisseur) || epaisseur <= 0) {
+                alert("Veuillez entrer une épaisseur valide en cm.");
+                return false;
             }
-        }
-            
 
-        function exo3(){
-            let faux = true
-            while (faux) {
-                let x = window.prompt("Qu'elle est la taille de la longueur du rectangle : ");
-                let y = window.prompt("Qu'elle est la taille de la largeur du rectangle : ");
-
-                if ((isNaN(x) || isNaN(y) || x < 0 || y < 0)) {
-                window.alert("L'air du rectangle est de : " + x*y);
-                faux = false                
-                }       
-                
-                else {
-                    window.alert("Veuillez entrer des valeurs numériques positives.")
-                }
+            if (isNaN(surface) || surface <= 0) {
+                alert("Veuillez entrer une surface valide en m².");
+                return false;
             }
-        }
-        
-        function exo4(){
-            let faux = true
-            while (faux) {
-                let x = window.prompt("Quelle est la taille de la longueur du rectangle : ");
-                let y = window.prompt("Quelle est la taille de la largeur du rectangle : ");
 
-                if (!(isNaN(x) || isNaN(y) || x < 0 || y < 0)) {
-                    document.open();
-                    document.write("<h1>L'aire du rectangle est de : " + (x * y) + "</h1>");
-                    document.close();
-                    faux = false                
-                } else {
-                    document.open();
-                    document.write("<h1>Veuillez entrer des valeurs numériques positives.</h1>");
-                    document.close();
-                }                
-            }
+            alert("Formulaire soumis avec succès !");
+            return true;
         }
 
-        function rect(x,y){
-            return x*y
-        }
-
-        function exo5(){
-            let faux = true
-            while (faux) {
-                let x = window.prompt("Quelle est la taille de la longueur du rectangle : ");
-                let y = window.prompt("Quelle est la taille de la largeur du rectangle : ");
-
-                if (!(isNaN(x) || isNaN(y) || x < 0 || y < 0)) {
-                    document.open();
-                    document.write("<h1>L'aire du rectangle est de : " + (rect(x,y)) + "</h1>");
-                    document.close();
-                    faux = false                
-                } else {
-                    document.open();
-                    document.write("<h1>Veuillez entrer des valeurs numériques positives.</h1>");
-                    document.close();
-                }                
-            }
-        }
-
-        function exo6(){
-
-            
-        }
-
-
-
-
-
-
-
-
-        
-
-
-        </script>
+    </script>
 </head>
 <body>
     <div style="margin: 10%; margin-top: 0%; margin-bottom: 0;">
@@ -112,14 +37,34 @@
 
     <h1 style="margin-left: 5%;"><strong>Bienvenue sur le TP8 - Découverte du JavaScript</strong></h1>
 
-    <h3 style="margin-left: 2.5%;"><u>Vous n'avez qu'à cliquer sur les boutons afin de tester les exercices : </u></h3>
+    <div class="Formulaire">
+        <h2>Formulaire de demande pour dalle</h2>
+        <form onsubmit="return validerFormulaire();">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required><br><br>
+    
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required><br><br>
+    
+            <label for="entreprise">Nom de l'entreprise :</label>
+            <input type="text" id="entreprise" name="entreprise"><br><br>
+    
+            <label for="telephone">Numéro de téléphone :</label>
+            <input type="tel" id="telephone" name="telephone" required><br><br>
+    
+            <label for="email">Adresse mail :</label>
+            <input type="email" id="email" name="email" required><br><br>
+    
+            <label for="epaisseur">Épaisseur de la dalle (cm) :</label>
+            <input type="number" id="epaisseur" name="epaisseur" required><br><br>
+    
+            <label for="surface">Surface de la dalle (m²) :</label>
+            <input type="number" id="surface" name="surface" required><br><br>
+    
+            <button type="submit">Envoyer</button>
+        </form>
 
-
-    <button onclick="exo1()"; style="margin: 2.5%; padding: 0.5%;"><strong>Exo 1</strong> - Calculer l'air du rectangle</button>
-    <button onclick="exo2()"; style="margin: 2.5%; padding: 0.5%;"><strong>Exo 2</strong> - Calculer l'air du rectangle avec confirmation</button>
-    <button onclick="exo3()"; style="margin: 2.5%; padding: 0.5%;"><strong>Exo 3</strong> - Calculer l'air du rectangle avec vérification entrées</button>
-    <button onclick="exo4()"; style="margin: 2.5%; padding: 0.5%;"><strong>Exo 4</strong> - Calculer l'air du rectangle avec vérif et affichage différent</button>
-    <button onclick="exo5()"; style="margin: 2.5%; padding: 0.5%;"><strong>Exo 5</strong> - Calculer l'air du rectangle avec vérif, affichage différent et appelle de fonction pour effectuer le calcul</button>
+    </div>
 
 
     
