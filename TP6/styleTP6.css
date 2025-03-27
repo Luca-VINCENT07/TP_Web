@@ -1,0 +1,76 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+
+th, td {
+    border: 1px solid #000;
+    padding: 1%;
+    text-align: center;
+}
+
+
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+
+table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  font-size: larger;
+  font-weight: 600;
+}
+
+caption {
+    padding: 3%;
+    font-weight: 1000;
+    font-size: xx-large;
+}
+
+.tete{
+    color: white;
+}
+
+.Per{
+    background-color: lightgrey;
+}
+
+.Za{
+    background-color: rgba(236, 98, 9);
+}
+
+.Zb{
+    background-color: rgba(65, 125, 197);
+}
+
+.Zc {
+    background-color: rgba(153, 193, 32);
+}
+
+.teteLang {
+    background-color: rgb(78, 74, 74);
+    color: white;
+}
+
+img {
+    width: 60px;
+    height: auto;
+    cursor: pointer;
+    text-align: center;
+}
+
+.VertFonce{
+    background-color: rgb(23, 155, 23);
+    color: white;
+}
+
+.VertClair {
+    background-color: rgba(78, 180, 78, 0.677);
+}

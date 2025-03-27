@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP 8 - JS</title>
+
+    <script>
+        function exo1(){
+            let x = window.prompt("Qu'elle est la taille de la longueur du rectangle : ");
+            let y = window.prompt("Qu'elle est la taille de la largeur du rectangle : ");
+
+            window.alert("L'air du rectangle est de : " + x*y);
+        }
+
+        function exo2 (){
+
+            let faux = true
+            while (faux) {
+                let x = window.prompt("Qu'elle est la taille de la longueur du rectangle : ");
+                let y = window.prompt("Qu'elle est la taille de la largeur du rectangle : ");
+
+                if (window.confirm("Voulez vous utiliser x : "+x+" et y : "+y)) {
+                    window.alert("L'air du rectangle est de : " + x*y);
+                    faux = false
+                }    
+            }
+        }
+            
+
+        function exo3(){
+            let faux = true
+            while (faux) {
+                let x = window.prompt("Qu'elle est la taille de la longueur du rectangle : ");
+                let y = window.prompt("Qu'elle est la taille de la largeur du rectangle : ");
+
+                if ((isNaN(x) || isNaN(y) || x < 0 || y < 0)) {
+                window.alert("L'air du rectangle est de : " + x*y);
+                faux = false                
+                }       
+                
+                else {
+                    window.alert("Veuillez entrer des valeurs numériques positives.")
+                }
+            }
+        }
+        
+        function exo4(){
+            let faux = true
+            while (faux) {
+                let x = window.prompt("Quelle est la taille de la longueur du rectangle : ");
+                let y = window.prompt("Quelle est la taille de la largeur du rectangle : ");
+
+                if (!(isNaN(x) || isNaN(y) || x < 0 || y < 0)) {
+                    document.open();
+                    document.write("<h1>L'aire du rectangle est de : " + (x * y) + "</h1>");
+                    document.close();
+                    faux = false                
+                } else {
+                    document.open();
+                    document.write("<h1>Veuillez entrer des valeurs numériques positives.</h1>");
+                    document.close();
+                }                
+            }
+        }
+
+        function rect(x,y){
+            return x*y
+        }
+
+        function exo5(){
+            let faux = true
+            while (faux) {
+                let x = window.prompt("Quelle est la taille de la longueur du rectangle : ");
+                let y = window.prompt("Quelle est la taille de la largeur du rectangle : ");
+
+                if (!(isNaN(x) || isNaN(y) || x < 0 || y < 0)) {
+                    document.open();
+                    document.write("<h1>L'aire du rectangle est de : " + (rect(x,y)) + "</h1>");
+                    document.close();
+                    faux = false                
+                } else {
+                    document.open();
+                    document.write("<h1>Veuillez entrer des valeurs numériques positives.</h1>");
+                    document.close();
+                }                
+            }
+        }
+
+        function exo6(){
+
+            
+        }
+
+
+
+
+
+
+
+
+        
+
+
+        </script>
+</head>
+<body>
+    <div style="margin: 10%; margin-top: 0%; margin-bottom: 0;">
+        <button onclick="window.location.href='../sommaire.html'; " style="margin: 3%; margin-top: 2%; margin-bottom: 0%;"><</button>
+        <button onclick="window.location.href='../main.html'; " style="margin: 0%; margin-top: 2%; margin-bottom: 0%;">Aller à l'accueil</button>
+    </div>
+
+    <h1 style="margin-left: 5%;"><strong>Bienvenue sur le TP8 - Découverte du JavaScript</strong></h1>
+
+    <h3 style="margin-left: 2.5%;"><u>Vous n'avez qu'à cliquer sur les boutons afin de tester les exercices : </u></h3>
+
+
+    <button onclick="exo1()"; style="margin: 2.5%; padding: 0.5%;"><strong>Exo 1</strong> - Calculer l'air du rectangle</button>
+    <button onclick="exo2()"; style="margin: 2.5%; padding: 0.5%;"><strong>Exo 2</strong> - Calculer l'air du rectangle avec confirmation</button>
+    <button onclick="exo3()"; style="margin: 2.5%; padding: 0.5%;"><strong>Exo 3</strong> - Calculer l'air du rectangle avec vérification entrées</button>
+    <button onclick="exo4()"; style="margin: 2.5%; padding: 0.5%;"><strong>Exo 4</strong> - Calculer l'air du rectangle avec vérif et affichage différent</button>
+    <button onclick="exo5()"; style="margin: 2.5%; padding: 0.5%;"><strong>Exo 5</strong> - Calculer l'air du rectangle avec vérif, affichage différent et appelle de fonction pour effectuer le calcul</button>
+
+
+    
+    
+</body>
+</html>

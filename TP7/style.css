@@ -1,0 +1,56 @@
+.main_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.exercice1, .exercice2, .exercice3, .exercice4 {
+    width: 80%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.haut {
+    background: red;
+    padding: 10px;
+    text-align: center;
+}
+
+.contenu_1 {
+    display: flex;
+    flex: 1;
+    height: 100px;
+
+}
+
+.gauche {
+    background: blue;
+    flex: 1;
+    padding: 10px;
+}
+
+.milieu {
+    background: green;
+    flex: 2;
+    padding: 10px;
+}
+
+.droite {
+    background: brown;
+    flex: 1;
+    padding: 10px;
+}
+
+.bas {
+    background: gold;
+    padding: 10px;
+    text-align: center;
+}
+
+.milieu-haut {
+    background: purple;
+    padding: 10px;
+    text-align: center;
+}
