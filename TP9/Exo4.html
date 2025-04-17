@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendrier paramétrable</title>
+    <style>
+        .calendar-container {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .calendar {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        .calendar th {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .calendar td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .calendar .today {
+            background-color: #ffeb3b;
+            font-weight: bold;
+        }
+
+        /* Tailles */
+        .small { width: 250px; }
+        .medium { width: 350px; }
+        .large { width: 450px; }
+
+        .small td, .small th { padding: 5px; }
+        .medium td, .medium th { padding: 10px; }
+        .large td, .large th { padding: 15px; }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+    <div class="back-button">
+        <button onclick="window.location.href='TP9.html';">&lt;</button>
+    </div>
+
+    <script>
+        function calendrier(firstDay, month, year, options = {}) {
+            const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+            const monthNames = [
+                'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+                'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+            ];
+
+            // Paramètres par défaut
+            const defaultOptions = {
+                size: 'medium',
+                color: '#f2f2f2',
+                todayColor: '#ffeb3b',
+                highlightToday: true
+            };
+            
+            const config = { ...defaultOptions, ...options };
+            const today = new Date();
+            const isCurrentMonth = today.getFullYear() === year && today.getMonth() + 1 === month;
+
+            // Calcul des jours
+            const date = new Date(year, month - 1, 1);
+            const totalDays = new Date(year, month, 0).getDate();
+            const startDay = firstDay; // 0-6 (Lun-Dim)
+
+            let html = `
+                <div class="calendar-container ${config.size}">
+                    <h2>${monthNames[month - 1]} ${year}</h2>
+                    <table class="calendar ${config.size}" style="background-color:${config.color}">
+                        <thead><tr>${days.map(d => `<th>${d}</th>`).join('')}</tr></thead>
+                        <tbody>`;
+
+            let dayCount = 1;
+            let currentDay = 1 - startDay;
+            
+            for (let i = 0; i < 6; i++) { // 6 lignes max
+                if (dayCount > totalDays) break;
+                
+                html += '<tr>';
+                
+                for (let j = 0; j < 7; j++) {
+                    if (currentDay >= 1 && dayCount <= totalDays) {
+                        const isToday = isCurrentMonth && dayCount === today.getDate();
+                        const todayClass = isToday && config.highlightToday ? 'today' : '';
+                        html += `<td class="${todayClass}" style="${isToday ? `background-color:${config.todayColor}` : ''}">${dayCount++}</td>`;
+                    } else {
+                        html += '<td></td>';
+                    }
+                    currentDay++;
+                }
+                
+                html += '</tr>';
+            }
+            
+            html += `</tbody></table></div>`;
+            return html;
+        }
+
+        // Exemple d'utilisation
+        document.getElementById('output').innerHTML = 
+            calendrier(1, 4, 2024, { 
+                size: 'medium', 
+                color: '#e3f2fd',
+                todayColor: '#ffcdd2'
+            }) +
+            calendrier(6, 3, 2025, {
+                size: 'large',
+                color: '#f8bbd0',
+                todayColor: '#c8e6c9'
+            });
+    </script>
+</body>
+</html>

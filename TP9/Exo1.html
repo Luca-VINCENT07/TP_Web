@@ -4,11 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercice 1</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div style="margin: 10%; margin-top: 0%; margin-bottom: 0;">
         <button onclick="window.location.href='TP9.html'; " style="margin: 3%; margin-top: 2%; margin-bottom: 0%;"><</button>
     </div>
+
+    <style>
+        .definition-link {
+            color: #0645ad;
+            cursor: pointer;
+            text-decoration: underline dotted;
+        }
+
+        .popup {
+            position: absolute;
+            width: 300px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: none;
+        }
+
+        .popup-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #202122;
+        }
+
+        .popup-content {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .popup-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+
+        <p style="margin-left: 2%;">Le but de cet exercice est de créer une page web contenant du texte dans lequel certains mots sont interactifs : lorsque l’utilisateur les survole ou clique dessus, une popup apparaît à l’emplacement du mot, affichant la définition correspondante. Cette popup comprend un titre, une explication textuelle et éventuellement une image illustrative. Pour gérer efficacement plusieurs définitions sur la même page, on utilise une structure de données de type « Map » en JavaScript, permettant d’associer chaque mot-clé à sa définition et à son contenu visuel. L’exercice implique également de travailler sur le style et le positionnement dynamique de la popup afin qu’elle s’affiche de manière claire et esthétique directement à côté du mot ciblé.</p>
+        <p style="margin-left: 5%;">
+            Lorem ipsum dolor sit amet, <span class="definition-link" data-term="php">PHP</span> 
+            consectetur adipiscing elit. Nullam auctor, <span class="definition-link" data-term="html">HTML</span> 
+            nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget ultricies.
+        </p>
+        <p style="margin-left: 5%;">
+            Sed do eiusmod tempor incididunt ut <span class="definition-link" data-term="css">CSS</span> 
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+        </p>
+    </div>
+
+    <div id="definitionPopup" class="popup">
+        <div class="popup-title" id="popupTitle"></div>
+        <div class="popup-content" id="popupContent"></div>
+        <img class="popup-image" id="popupImage" src="" alt="Illustration">
+    </div>
+
+    <script>
+        const definitions = new Map([
+            ['php', {
+                title: 'PHP',
+                content: 'Langage de script généraliste utilisé pour le développement web.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg'
+            }],
+            ['html', {
+                title: 'HTML',
+                content: 'Langage de balisage standard pour les documents web.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg'
+            }],
+            ['css', {
+                title: 'CSS',
+                content: 'Langage de feuille de style pour décrire la présentation des documents HTML.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg'
+            }]
+        ]);
+
+        const popup = document.getElementById('definitionPopup');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupContent = document.getElementById('popupContent');
+        const popupImage = document.getElementById('popupImage');
+
+        document.querySelectorAll('.definition-link').forEach(link => {
+            link.addEventListener('mouseenter', (e) => {
+                const term = e.target.dataset.term;
+                const definition = definitions.get(term);
+                
+                if(definition) {
+                    popupTitle.textContent = definition.title;
+                    popupContent.textContent = definition.content;
+                    popupImage.src = definition.image;
+                    popupImage.style.display = definition.image ? 'block' : 'none';
+                    
+                    const rect = e.target.getBoundingClientRect();
+                    popup.style.top = `${rect.bottom + window.scrollY}px`;
+                    popup.style.left = `${rect.left + window.scrollX}px`;
+                    popup.style.display = 'block';
+                }
+            });
+
+            link.addEventListener('mouseleave', () => {
+                popup.style.display = 'none';
+            });
+        });
+
+        // Gestion du survol de la popup elle-même
+        popup.addEventListener('mouseenter', () => {
+            popup.style.display = 'block';
+        });
+
+        popup.addEventListener('mouseleave', () => {
+            popup.style.display = 'none';
+        });
+    </script>
     
 </body>
 </html>
